@@ -14,11 +14,12 @@ jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
-      - name: Install apt dependencies
+      - name: Install apt dependencies with caching
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: genisoimage mtools python3-distro-info pxelinux syslinux-common
           version: 1.0
+          execute_install_scripts: true
 
       - name: Set up python
         uses: actions/setup-python@v4
