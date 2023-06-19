@@ -38,7 +38,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
-          tag: ${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.inputs.version }}
           fail_on_unmatched_files: true
           files: |
             /tmp/ubuntu-installer/casper/vmlinuz
