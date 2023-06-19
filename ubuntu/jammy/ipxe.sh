@@ -16,8 +16,8 @@ set net{{ INTERFACE_ID }}/dns 8.8.8.8
 # without prepending a forward slash to the file name.
 set seed_url https://raw.githubusercontent.com/anthonyra/vm-installer/main/ubuntu/jammy/templates/
 
-set vmlinuz_url https://cloud-images.ubuntu.com/jammy/current/unpacked/jammy-server-cloudimg-amd64-vmlinuz-generic
-set initrd_url https://cloud-images.ubuntu.com/jammy/current/unpacked/jammy-server-cloudimg-amd64-initrd-generic
+set vmlinuz_url https://github.com/anthonyra/vm-installer/releases/download/22.04.2/vmlinuz
+set initrd_url https://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
 set iso_url https://releases.ubuntu.com/jammy/ubuntu-22.04.2-live-server-amd64.iso
 
 kernel ${vmlinuz_url} autoinstall url=${iso_url} ds=nocloud-net;s=${seed_url}
