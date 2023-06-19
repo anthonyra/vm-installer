@@ -1,4 +1,4 @@
-name: Extract casper artifacts from ISO
+name: Netboot resources
 
 on: 
   workflow_dispatch:
@@ -31,8 +31,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install distro-info ubuntu-server-netboot
       
+      - name: Download ISO
+        run: |
+          wget -q https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
+
       - name: extract vmlinuz and initrd from ISO
-        run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
+        run: ubuntu-server-netboot --iso ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
 
       - name: upload vmlinuz and initrd to release
         uses: softprops/action-gh-release@v1
@@ -43,3 +47,4 @@ jobs:
           files: |
             /tmp/ubuntu-installer/casper/vmlinuz
             /tmp/ubuntu-installer/casper/initrd
+            /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
