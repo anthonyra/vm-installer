@@ -36,7 +36,7 @@ jobs:
           wget -q https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso -P ${{ runner.temp }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
 
       - name: extract vmlinuz and initrd from ISO
-        run: ubuntu-server-netboot --iso ${{ runner.temp }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir ${{ runner.temp }}
+        run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir ${{ runner.temp }}
 
       - name: upload vmlinuz and initrd to release
         uses: softprops/action-gh-release@v1
