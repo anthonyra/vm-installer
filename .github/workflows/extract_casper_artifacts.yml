@@ -17,9 +17,12 @@ jobs:
       - name: Install apt dependencies with caching
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: genisoimage mtools python3-distro-info pxelinux syslinux-common
+          packages: genisoimage mtools pxelinux syslinux-common
           version: 1.0
-          execute_install_scripts: true
+
+      - name: Install pesky python3-distro-info
+        run: apt-get install python3-distro-info
+        shell: bash
 
       - name: Set up python
         uses: actions/setup-python@v4
