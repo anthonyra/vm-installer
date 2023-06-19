@@ -21,7 +21,7 @@ jobs:
           version: 1.0
 
       - name: Install pesky python3-distro-info
-        run: sudo apt-get install python3-distro-info
+        run: sudo apt-get install --reinstall python3-distro-info
         shell: bash
 
       - name: Set up python
