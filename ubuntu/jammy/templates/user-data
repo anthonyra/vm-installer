@@ -1,0 +1,36 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  network:
+    version: 2
+    ethernets:
+      eth0:
+        dhcp4: yes
+
+  ssh:
+    install-server: yes
+
+  storage:
+    layout:
+      name: lvm
+      match: {} #match any arbitrary disk
+
+  user-data:
+    disable_root: true
+    package_update: true
+    package_upgrade: true
+    ssh_pwauth: false
+    users:
+      - name: ansible
+        gecos: Ansible User
+        groups: users,admin,wheel
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        lock_passwd: true
+        ssh_authorized_keys:
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOoS2B6npMiBYWNl/pYoI14FDWSd2DoT0M49l14k1XLK anthonyra@Anthonys-Mac-Studio.local
+
+  late-commands:
+    - curtin in-target --target /target -- sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/' /etc/default/grub
+    - curtin in-target --target /target -- update-grub2
