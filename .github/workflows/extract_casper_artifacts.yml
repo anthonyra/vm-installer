@@ -20,10 +20,6 @@ jobs:
           packages: genisoimage mtools pxelinux syslinux-common
           version: 1.0
 
-      - name: Install pesky python3-distro-info
-        run: sudo apt-get install --reinstall python3-distro-info
-        shell: bash
-
       - name: Set up python
         uses: actions/setup-python@v4
         with:
@@ -33,7 +29,7 @@ jobs:
       - name: Install python packages
         run: |
           python -m pip install --upgrade pip
-          pip install ubuntu-server-netboot
+          pip install distro-info ubuntu-server-netboot
       
       - name: extract vmlinuz and initrd from ISO
         run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
