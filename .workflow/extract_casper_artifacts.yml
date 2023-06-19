@@ -1,0 +1,38 @@
+name: Extract casper artifacts from ISO
+
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Image Version'     
+        required: true
+        default: '22.04.2'
+      tags:
+        description: 'The url of the ISO image to extract vmlinuz and initrd from.' 
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: genisoimage mtools python3-distro-info pxelinux syslinux-common
+          version: 1.0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install ubuntu-server-netboot
+      
+      - name: extract vmlinuz and initrd from ISO
+        run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
+
+      - name: upload vmlinuz and initrd to release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
+          tag: ${{ github.event.inputs.version }}
+          fail_on_unmatched_files: true
+          files: |
+            /tmp/ubuntu-installer/casper/vmlinuz
+            /tmp/ubuntu-installer/casper/initrd
