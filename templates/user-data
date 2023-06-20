@@ -1,15 +1,17 @@
 #cloud-config
 autoinstall:
   version: 1
+  update: true
 
   network:
     version: 2
     ethernets:
-      eth0:
-        dhcp4: yes
+      enp1s0f0:
+        dhcp4: true
 
   ssh:
-    install-server: yes
+    install-server: true
+    allow-pw: false
 
   storage:
     layout:
@@ -17,9 +19,7 @@ autoinstall:
       match: {} #match any arbitrary disk
 
   user-data:
-    package_update: true
-    package_upgrade: true
-    ssh_pwauth: false
+    disable_root: true
     users:
       - name: ansible
         gecos: Ansible User
