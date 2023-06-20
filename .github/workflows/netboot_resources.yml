@@ -31,9 +31,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install distro-info ubuntu-server-netboot
 
-      - name: Download ISO
-        run: |
-          wget -q https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso -O /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
+      # - name: Download ISO
+      #   run: |
+      #     wget -q https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso -O /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
 
       - name: extract vmlinuz and initrd from ISO
         run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
@@ -47,4 +47,3 @@ jobs:
           files: |
             /tmp/ubuntu-installer/casper/vmlinuz
             /tmp/ubuntu-installer/casper/initrd
-            /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso

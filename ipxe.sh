@@ -13,7 +13,7 @@ ifopen net{{ INTERFACE_ID }}
 set seed_url http://raw.githubusercontent.com/anthonyra/vm-installer/main/templates/
 set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/vmlinuz
 set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
-set iso_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
+set iso_url https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
 
 kernel ${vmlinuz_url} || read void
 initrd ${initrd_url} || read void
