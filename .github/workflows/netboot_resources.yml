@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Image Version'     
+        description: 'Ubuntu Live Server Version'     
         required: true
         default: '22.04.2'
       tags:
@@ -30,10 +30,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install distro-info ubuntu-server-netboot
-
-      # - name: Download ISO
-      #   run: |
-      #     wget -q https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso -O /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
 
       - name: extract vmlinuz and initrd from ISO
         run: ubuntu-server-netboot --url https://releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
