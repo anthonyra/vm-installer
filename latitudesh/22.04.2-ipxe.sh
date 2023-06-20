@@ -24,6 +24,6 @@ imgargs vmlinuz \
     maybe-ubiquity \
     autoinstall \
     url=${iso_url} \
-    ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::eth0:off \
+    ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off \
     ds=nocloud-net;s=${seed_url}
 boot
