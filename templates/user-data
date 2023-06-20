@@ -1,13 +1,6 @@
 #cloud-config
 autoinstall:
   version: 1
-  update: true
-
-  network:
-    version: 2
-    ethernets:
-      eth0:
-        dhcp4: true
 
   ssh:
     install-server: true
