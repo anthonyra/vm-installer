@@ -16,6 +16,11 @@ set iso_url http://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.
 
 kernel ${vmlinuz_url}
 initrd ${initrd_url}
+
+show dns
+set dns 8.8.8.8
+show dns
+
 imgargs vmlinuz \
     initrd=initrd \
     boot=casper \
