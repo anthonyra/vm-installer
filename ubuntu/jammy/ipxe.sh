@@ -15,6 +15,7 @@ set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04
 set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
 set iso_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
 
-kernel ${vmlinuz_url} autoinstall url=${iso_url} ds=nocloud-net;s=${seed_url}
+kernel ${vmlinuz_url}
 initrd ${initrd_url}
+imgargs vmlinuz initrd=initrd boot=casper ip={{ PUBLIC_IP }}/24 url=${iso_url} autoinstall ds=nocloud-net;s=${seed_url}
 boot
