@@ -17,5 +17,5 @@ set iso_url http://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.
 
 kernel ${vmlinuz_url} || read void
 initrd ${initrd_url} || read void
-imgargs vmlinuz initrd=initrd boot=casper maybe-ubiquity ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off url=${iso_url} autoinstall ds=nocloud-net;s=${seed_url} || read void
+imgargs vmlinuz initrd=initrd boot=casper maybe-ubiquity netboot=nfs ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off url=${iso_url} autoinstall ds=nocloud-net;s=${seed_url} || read void
 boot || read void
