@@ -3,7 +3,6 @@
 #
 # Ubuntu Installer
 #
-
 ifopen net{{ INTERFACE_ID }}
 set net{{ INTERFACE_ID }}/ip {{ PUBLIC_IP }}
 set net{{ INTERFACE_ID }}/netmask 255.255.255.0
