@@ -14,7 +14,17 @@ set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04
 set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
 set iso_url http://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
 
-kernel ${vmlinuz_url} || read void
-initrd ${initrd_url} || read void
-imgargs vmlinuz initrd=initrd boot=casper maybe-ubiquity ipv6.disable=1 ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off url=${iso_url} autoinstall ds=nocloud-net;s=${seed_url} || read void
-boot || read void
+kernel ${vmlinuz_url}
+initrd ${initrd_url}
+imgargs vmlinuz \
+    initrd=initrd \
+    boot=casper \
+    maybe-ubiquity \
+    autoinstall \
+    url=${iso_url} \
+    net.ifnames=0 \
+    biosdevname=0 \
+    ipv6.disable=1 \
+    ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off \
+    ds=nocloud-net;s=${seed_url}
+boot
