@@ -9,7 +9,6 @@ autoinstall:
   storage:
     layout:
       name: lvm
-      match: {} #match any arbitrary disk
 
   user-data:
     disable_root: true
