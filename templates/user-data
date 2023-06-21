@@ -15,7 +15,7 @@ autoinstall:
       size: 1GB
       maxsize: 5GB
     config:
-      - id: main_disk
+      - id: root_disk
         type: disk
         ptable: gpt
         name: root_disk
@@ -25,13 +25,13 @@ autoinstall:
         type: partition
         number: 1
         size: 30G
-        device: main_disk
+        device: root_disk
         flag: boot
       - id: bios_boot
         type: partition
         size: 1MB
         number: 15
-        device: main_disk
+        device: root_disk
         flag: bios_grub
       - id: root_volgroup
         type: lvm_volgroup
@@ -45,7 +45,7 @@ autoinstall:
         volgroup: root_volgroup
       - id: root_fs
         type: format
-        fstype: __ROOTFS_FORMAT__
+        fstype: ext4
         volume: root_lvm
       - id: lvroot_mount
         path: /
