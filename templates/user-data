@@ -37,7 +37,7 @@ autoinstall:
         type: lvm_volgroup
         name: root_volgroup
         devices:
-            - boot_partition
+          - boot_partition
       - id: root_lvm
         type: lvm_partition
         name: root_lvm
