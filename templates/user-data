@@ -7,6 +7,8 @@ autoinstall:
     allow-pw: false
 
   storage:
+    grub:
+      reorder_uefi: false
     layout:
       name: lvm
 
