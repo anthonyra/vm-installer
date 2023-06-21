@@ -63,4 +63,3 @@ autoinstall:
         lock_passwd: true
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOoS2B6npMiBYWNl/pYoI14FDWSd2DoT0M49l14k1XLK anthonyra@Anthonys-Mac-Studio.local
-
