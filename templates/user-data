@@ -13,7 +13,7 @@ autoinstall:
     swap:
       filename: swap.img
       size: 1GB
-      maxsize: 4GB
+      maxsize: 5GB
     config:
       - id: main_disk
         type: disk
