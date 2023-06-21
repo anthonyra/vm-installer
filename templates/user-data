@@ -7,10 +7,50 @@ autoinstall:
     allow-pw: false
 
   storage:
+    version: 1
     grub:
       reorder_uefi: false
-    layout:
-      name: lvm
+    swap:
+      filename: swap.img
+      size: 1GB
+      maxsize: 4GB
+    config:
+      - id: main_disk
+        type: disk
+        ptable: gpt
+        name: root_disk
+        wipe: superblock
+        grub_device: true
+      - id: boot_partition
+        type: partition
+        number: 1
+        size: 30G
+        device: main_disk
+        flag: boot
+      - id: bios_boot
+        type: partition
+        size: 1MB
+        number: 15
+        device: main_disk
+        flag: bios_grub
+      - id: root_volgroup
+        type: lvm_volgroup
+        name: root_volgroup
+        devices:
+            - boot_partition
+      - id: root_lvm
+        type: lvm_partition
+        name: root_lvm
+        size: 29.5G
+        volgroup: root_volgroup
+      - id: root_fs
+        type: format
+        fstype: __ROOTFS_FORMAT__
+        volume: root_lvm
+      - id: lvroot_mount
+        path: /
+        type: mount
+        device: root_fs
 
   user-data:
     disable_root: true
@@ -23,3 +63,4 @@ autoinstall:
         lock_passwd: true
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOoS2B6npMiBYWNl/pYoI14FDWSd2DoT0M49l14k1XLK anthonyra@Anthonys-Mac-Studio.local
+
