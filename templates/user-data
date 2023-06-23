@@ -4,7 +4,7 @@ autoinstall:
 
   ssh:
     install-server: true
-    allow-pw: false
+    allow-pw: true
 
   storage:
     version: 1
