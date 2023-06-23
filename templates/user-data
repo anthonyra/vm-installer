@@ -9,53 +9,55 @@ autoinstall:
   
   ssh:
     install-server: true
-    allow-pw: true
+    allow-pw: false
 
   storage:
     version: 1
     grub:
       reorder_uefi: false
     swap:
-      filename: swap.img
-      size: 1GB
-      maxsize: 5GB
+      size: 0
     config:
-      - id: root_disk
+      - id: disk0
         type: disk
         ptable: gpt
-        name: root_disk
-        wipe: superblock
+        path: /dev/sda
+        preserve: false
+        wipe: superblock-recursive
         grub_device: true
-      - id: boot_partition
-        type: partition
-        number: 1
-        size: 30G
-        device: root_disk
-        flag: boot
-      - id: bios_boot
+      - id: disk0-part0
         type: partition
         size: 1MB
-        number: 15
-        device: root_disk
+        device: disk0
         flag: bios_grub
-      - id: root_volgroup
+      - id: disk0-part1
+        type: partition
+        size: 5GB
+        device: disk0
+        flag: boot
+      - id: disk0-part2
+        type: partition
+        size: 30GB
+        device: disk0
+      - id: vg0
         type: lvm_volgroup
-        name: root_volgroup
+        name: root-lvm
         devices:
-          - boot_partition
-      - id: root_lvm
+          - disk0-part2
+      - id: lvm-part0
         type: lvm_partition
-        name: root_lvm
-        size: 29.5G
-        volgroup: root_volgroup
-      - id: root_fs
+        name: root-partition
+        size: 100%
+        volgroup: vg0
+      - id: lvm-part0-fs
         type: format
         fstype: ext4
-        volume: root_lvm
-      - id: lvroot_mount
+        label: root
+        volume: lvm-part0
+      - id: lvm-part0-fs-mount0
         path: /
         type: mount
-        device: root_fs
+        device: lvm-part0-fs
 
   packages:
     - ansible
