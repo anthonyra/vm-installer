@@ -2,10 +2,10 @@
 autoinstall:
   version: 1
 
-  identity:
-    hostname: ubuntu
-    password: "$6$FhcddHFVZ7ABA4Gi$9l4yURWASWe8xEa1jzI0bacVLvhe3Yn4/G3AnU11K3X0yu/mICVRxfo6tZTB2noKljlIRzjkVZPocdf63MtzC0" # root
-    username: ubuntu # root doesn't work
+  # identity:
+  #   hostname: server
+  #   password: "$6$FhcddHFVZ7ABA4Gi$9l4yURWASWe8xEa1jzI0bacVLvhe3Yn4/G3AnU11K3X0yu/mICVRxfo6tZTB2noKljlIRzjkVZPocdf63MtzC0" # root
+  #   username: ubuntu # root doesn't work
   
   ssh:
     install-server: true
@@ -66,6 +66,8 @@ autoinstall:
 
   user-data:
     disable_root: true
+    package_update: true
+    package_upgrade: true
     users:
       - name: ansible
         gecos: Ansible User

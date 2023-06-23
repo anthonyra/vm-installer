@@ -16,5 +16,13 @@ set seed_url http://raw.githubusercontent.com/anthonyra/vm-installer/main/templa
 
 kernel ${vmlinuz_url}
 initrd ${initrd_url}
-imgargs vmlinuz initrd=initrd boot=casper url=${iso_url} ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off:8.8.8.8:: ipv6.disable=1 autoinstall ds=nocloud-net;s=${seed_url} cloud-config-url=/dev/null
+imgargs vmlinuz \
+    initrd=initrd \
+    boot=casper \
+    url=${iso_url} \
+    ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off:8.8.8.8:: \
+    ipv6.disable=1 \
+    autoinstall \
+    ds=nocloud-net;s=${seed_url} \
+    cloud-config-url=/dev/null
 boot
