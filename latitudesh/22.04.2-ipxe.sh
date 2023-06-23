@@ -20,10 +20,10 @@ imgargs vmlinuz \
     initrd=initrd \
     boot=casper \
     maybe-ubiquity \
-    autoinstall \
     url=${iso_url} \
     ip={{ PUBLIC_IP }}::{{ PUBLIC_GW }}:255.255.255.0::enp1s0f0:off:8.8.8.8:: \
     ipv6.disable=1 \
-    "ds=nocloud-net;s=${seed_url}" \
+    autoinstall \
+    ds=nocloud-net;seedfrom=${seed_url} \
     cloud-config-url=/dev/null
 boot
