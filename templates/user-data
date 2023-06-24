@@ -34,6 +34,10 @@ autoinstall:
         type: partition
         size: 30GB
         device: disk0
+      - id: disk0-part3
+        type: partition
+        size: -1
+        device: disk0
       - id: vg0
         type: lvm_volgroup
         name: root-lvm
