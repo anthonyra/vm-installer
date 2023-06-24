@@ -22,17 +22,17 @@ autoinstall:
         grub_device: true
       - id: disk0-part0
         type: partition
-        size: 1MB
+        size: 1M
         device: disk0
         flag: bios_grub
       - id: disk0-part1
         type: partition
-        size: 5GB
+        size: 5G
         device: disk0
         flag: boot
       - id: disk0-part2
         type: partition
-        size: 30GB
+        size: 30G
         device: disk0
       - id: disk0-part3
         type: partition
