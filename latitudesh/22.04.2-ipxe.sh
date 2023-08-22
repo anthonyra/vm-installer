@@ -11,7 +11,7 @@ set net{{ INTERFACE_ID }}/dns 8.8.8.8
 
 set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/vmlinuz
 set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
-set iso_url http://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
+set iso_url http://old-releases.ubuntu.com/releases/22.04/ubuntu-22.04.2-live-server-amd64.iso
 set seed_url http://raw.githubusercontent.com/anthonyra/vm-installer/main/templates/
 
 kernel ${vmlinuz_url}
