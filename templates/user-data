@@ -1,7 +1,6 @@
 #cloud-config
 autoinstall:
   version: 1
-  
   ssh:
     install-server: true
     allow-pw: false
