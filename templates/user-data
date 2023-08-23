@@ -16,7 +16,6 @@ autoinstall:
       - id: disk0
         type: disk
         ptable: gpt
-        path: /dev/sda
         preserve: false
         wipe: superblock-recursive
         grub_device: true
