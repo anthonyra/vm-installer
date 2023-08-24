@@ -9,9 +9,9 @@ set net{{ INTERFACE_ID }}/netmask 255.255.255.0
 set net{{ INTERFACE_ID }}/gateway {{ PUBLIC_GW }}
 set net{{ INTERFACE_ID }}/dns 8.8.8.8
 
-set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/vmlinuz
-set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04.2/initrd
-set iso_url http://old-releases.ubuntu.com/releases/22.04/ubuntu-22.04.2-live-server-amd64.iso
+set vmlinuz_url http://github.com/anthonyra/vm-installer/releases/download/22.04/vmlinuz
+set initrd_url http://github.com/anthonyra/vm-installer/releases/download/22.04/initrd
+set iso_url http://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04-live-server-amd64.iso
 set seed_url http://raw.githubusercontent.com/anthonyra/vm-installer/main/templates/
 
 kernel ${vmlinuz_url}
