@@ -15,7 +15,7 @@ jobs:
       - name: Get version as major/minor
         uses: terradatum/semver-action@v1
         with:
-          version: ${{ github.event.inputs.version }}
+          version: "v${{ github.event.inputs.version }}"
         id: semver_parts
 
       - name: Install apt dependencies with caching
@@ -36,15 +36,15 @@ jobs:
           pip install distro-info ubuntu-server-netboot
 
       - name: extract vmlinuz and initrd from ISO
-        run: ubuntu-server-netboot --url https://old-releases.ubuntu.com/${{ steps.semver_parts.outputs.major }}.${{ steps.semver_parts.outputs.minor }}/ubuntu-${{ steps.semver_parts.outputs.version }}-live-server-amd64.iso --out-dir /tmp
+        run: ubuntu-server-netboot --url https://old-releases.ubuntu.com/${{ steps.semver_parts.outputs.major }}.${{ steps.semver_parts.outputs.minor }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
 
       - name: upload vmlinuz and initrd to release
         uses: softprops/action-gh-release@v1
         with:
-          name: ubuntu-${{ steps.semver_parts.outputs.version }}-live-server-amd64.iso
-          tag_name: ${{ steps.semver_parts.outputs.version }}
+          name: ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
+          tag_name: ${{ github.event.inputs.version }}
           fail_on_unmatched_files: true
           files: |
             /tmp/ubuntu-installer/casper/vmlinuz
             /tmp/ubuntu-installer/casper/initrd
-            /tmp/ubuntu-${{ steps.semver_parts.outputs.version }}-live-server-amd64.iso
+            /tmp/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso
