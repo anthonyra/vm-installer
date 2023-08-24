@@ -74,4 +74,4 @@ autoinstall:
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOoS2B6npMiBYWNl/pYoI14FDWSd2DoT0M49l14k1XLK anthonyra@Anthonys-Mac-Studio.local
   late-commands:
-    - sed -ie 's/GRUB_TIMEOUT=.\*/GRUB_TIMEOUT=30/' /target/etc/default/grub
+    - sed -ie 's/GRUB_TIMEOUT=.\*/GRUB_TIMEOUT=0/' /target/etc/default/grub
