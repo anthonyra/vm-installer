@@ -6,18 +6,12 @@ on:
       version:
         description: 'Ubuntu Live Server Version'     
         required: true
-        default: '22.04.2'
+        default: '22.04'
 
 jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
-      - name: Get version as major/minor
-        uses: terradatum/semver-action@v1
-        with:
-          version: "v${{ github.event.inputs.version }}"
-        id: semver_parts
-
       - name: Install apt dependencies with caching
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
@@ -36,7 +30,7 @@ jobs:
           pip install distro-info ubuntu-server-netboot
 
       - name: extract vmlinuz and initrd from ISO
-        run: ubuntu-server-netboot --url https://old-releases.ubuntu.com/${{ steps.semver_parts.outputs.major }}.${{ steps.semver_parts.outputs.minor }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
+        run: ubuntu-server-netboot --url https://old-releases.ubuntu.com/${{ github.event.inputs.version }}/ubuntu-${{ github.event.inputs.version }}-live-server-amd64.iso --out-dir /tmp
 
       - name: upload vmlinuz and initrd to release
         uses: softprops/action-gh-release@v1
