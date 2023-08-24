@@ -15,7 +15,7 @@ jobs:
       - name: Get version as major/minor
         uses: terradatum/semver-action
         with:
-          version: v1.0.0
+          version: ${{ github.event.inputs.version }}
         id: semver_parts
 
       - name: Install apt dependencies with caching
