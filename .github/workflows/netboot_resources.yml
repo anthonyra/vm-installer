@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get version as major/minor
-        uses: terradatum/semver-action
+        uses: terradatum/semver-action@v1
         with:
           version: ${{ github.event.inputs.version }}
         id: semver_parts
